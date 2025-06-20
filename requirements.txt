@@ -6,3 +6,8 @@ seaborn
 pyrebase4
 gcloud==0.18.3
 google-cloud-storage
+-pyrebase4
++pyrebase4
++setuptools
++gcloud==0.18.3
++google-cloud-storage
