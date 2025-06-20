@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # ---------------------
-# Firebase 설정 (기존 유지)
+# Firebase 설정
 # ---------------------
 firebase_config = {
     "apiKey": "AIzaSyCswFmrOGU3FyLYxwbNPTp7hvQxLfTPIZw",
@@ -26,7 +26,7 @@ firestore = firebase.database()
 storage = firebase.storage()
 
 # ---------------------
-# 세션 상태 초기화 (기존 유지)
+# 세션 상태 초기화
 # ---------------------
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -38,7 +38,7 @@ if "logged_in" not in st.session_state:
     st.session_state.profile_image_url = ""
 
 # ---------------------
-# 홈 페이지 클래스 (수정)
+# 홈 페이지 클래스
 # ---------------------
 class Home:
     def __init__(self, login_page, register_page, findpw_page):
@@ -55,7 +55,7 @@ class Home:
         """)
 
 # ---------------------
-# 로그인/회원가입/비번찾기/사용자정보/로그아웃 페이지 클래스 (기존 유지)
+# 로그인/회원가입/비번찾기/사용자정보/로그아웃 페이지 클래스 
 # ---------------------
 class Login:
     def __init__(self):
@@ -177,7 +177,7 @@ class Logout:
         st.rerun()
 
 # ---------------------
-# EDA 페이지 클래스 (수정)
+# EDA 페이지 클래스 
 # ---------------------
 class EDA:
     def __init__(self):
@@ -259,7 +259,7 @@ class EDA:
             merged['변화율(%)'] = merged['변화량'] / merged['인구_past'] * 100
             merged_rate = merged.sort_values('변화율(%)', ascending=False)
             fig3, ax3 = plt.subplots()
-            sns.barplot(x='change rate(%)', y='local', data=merged_rate, ax=ax3)
+            sns.barplot(x='변화율(%)', y='지역', data=merged_rate, ax=ax3)
             ax3.set_xlabel("Change Rate (%)")
             st.pyplot(fig3)
 
@@ -284,7 +284,7 @@ class EDA:
             st.pyplot(fig4)
 
 # ---------------------
-# 페이지 객체 생성 및 네비게이션 실행 (기존 유지)
+# 페이지 객체 생성 및 네비게이션 실행 
 # ---------------------
 Page_Login    = st.Page(Login,    title="Login",    icon="🔐", url_path="login")
 Page_Register = st.Page(lambda: Register(Page_Login.url_path), title="Register", icon="📝", url_path="register")
