@@ -4,3 +4,5 @@ numpy
 matplotlib
 seaborn
 pyrebase4
+gcloud==0.18.3
+google-cloud-storage
