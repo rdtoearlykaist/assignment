@@ -234,6 +234,7 @@ class EDA:
             ax.plot([last_year, 2035], [last_pop, predict], linestyle='--', marker='x')
             st.pyplot(fig)
 
+        
         # Tab 3: 지역별 분석
         with tabs[2]:
             st.header("🏙️ 지역별 인구 변화량 순위")
@@ -250,18 +251,29 @@ class EDA:
             merged = merged[merged['지역']!='전국']
             merged['변화량'] = merged['인구_latest'] - merged['인구_past']
             merged_sorted = merged.sort_values('변화량', ascending=False)
+
+            # Absolute change bar chart
             fig2, ax2 = plt.subplots()
             sns.barplot(x='변화량', y='지역', data=merged_sorted, ax=ax2)
+            ax2.set_title("5-Year Population Change by Region")
+            ax2.set_xlabel("Change (people)")
+            ax2.set_ylabel("Region")
             for idx, row in merged_sorted.iterrows():
                 ax2.text(row['변화량'], idx, int(row['변화량']), va='center')
             st.pyplot(fig2)
 
+            # Rate of change bar chart
             merged['변화율(%)'] = merged['변화량'] / merged['인구_past'] * 100
             merged_rate = merged.sort_values('변화율(%)', ascending=False)
             fig3, ax3 = plt.subplots()
             sns.barplot(x='변화율(%)', y='지역', data=merged_rate, ax=ax3)
+            ax3.set_title("5-Year Population Change Rate by Region")
             ax3.set_xlabel("Change Rate (%)")
+            ax3.set_ylabel("Region")
+            for idx, row in merged_rate.iterrows():
+                ax3.text(row['변화율(%)'], idx, f"{row['변화율(%)']:.1f}%", va='center')
             st.pyplot(fig3)
+
 
         # Tab 4: 변화량 분석
         with tabs[3]:
