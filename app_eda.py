@@ -259,7 +259,7 @@ class EDA:
             merged['변화율(%)'] = merged['변화량'] / merged['인구_past'] * 100
             merged_rate = merged.sort_values('변화율(%)', ascending=False)
             fig3, ax3 = plt.subplots()
-            sns.barplot(x='변화율(%)', y='지역', data=merged_rate, ax=ax3)
+            sns.barplot(x='change', y='region', data=merged_rate, ax=ax3)
             ax3.set_xlabel("Change Rate (%)")
             st.pyplot(fig3)
 
